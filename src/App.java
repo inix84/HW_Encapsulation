@@ -1,4 +1,10 @@
+import org.skypro.skyshop.Search.SearchEngine;
+import org.skypro.skyshop.Search.Searchable;
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
+import org.skypro.skyshop.product.Product;
+
+import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
@@ -15,7 +21,6 @@ public class App {
         System.out.println();
         Basket.addProduct("Чипсы", 249);
         System.out.println();
-
         Basket.printBasket();
         System.out.println();
         Basket.printTotalPriceBasket();
@@ -31,6 +36,40 @@ public class App {
         Basket.printTotalPriceBasket();
         System.out.println();
         Basket.findProduct("Масло");
+        System.out.println("ТЕСТИРОВАНИЕ ИЗМЕНЕНИЙ");
+        //Создайте один объект типа SearchEngine
+        SearchEngine SearchEngine = new SearchEngine(10);
 
+        // Я ОТДЕЛЬНЫЕ СОЗДАЛА, А НЕ ТЕ ЧТО В КОРЗИНЕ!
+        Product product1 = new Product("Масло");
+        Product product2 = new Product("Молоко");
+        Product product3 = new Product("Хлеб");
+
+        //добавьте в него все товары, которые создаются для проверки других методов.
+        SearchEngine.add(product1);
+        SearchEngine.add(product2);
+        SearchEngine.add(product3);
+
+        //Создайте несколько объектов типа Article
+        Article article1 = new Article("Масло", "о масле");
+        Article article2 = new Article("Масло", "о молоке, которое стало масло");
+        Article article3 = new Article("Хлеб", "о хлебе");
+
+        // добавьте их в Search Engine
+        SearchEngine.add(article1);
+        SearchEngine.add(article2);
+        SearchEngine.add(article3);
+
+        product1.getStringRepresentation();
+        product2.getStringRepresentation();
+        product3.getStringRepresentation();
+        article1.getStringRepresentation();
+        article2.getStringRepresentation();
+        article3.getStringRepresentation();
+
+        // Продемонстрируйте функциональность поиска с помощью объекта SearchEngine: вызовите метод search несколько раз с разными строками поиска.
+        SearchEngine.search("Масло");
+        SearchEngine.search("Молоко");
+        SearchEngine.search("Хлеб");
     }
 }
